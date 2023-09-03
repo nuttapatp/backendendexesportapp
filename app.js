@@ -18,12 +18,18 @@ const types = require("./routes/type");
 
 mongoose.Promise = global.Promise;
 
+const mongoURI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://admin:1234@cluster0.cftvtvp.mongodb.net/test?retryWrites=true&w=majority";
+
 mongoose
-  .connect(
-    "mongodb+srv://admin:1234@cluster0.cftvtvp.mongodb.net/test?retryWrites=true&w=majority"
-  )  
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connection successful"))
   .catch((err) => console.error(err));
+
 
 
 // const customerConnection = mongoose.createConnection(
