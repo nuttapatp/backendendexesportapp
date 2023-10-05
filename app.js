@@ -9,9 +9,10 @@ const products = require('./routes/products')
 const brands = require("./routes/brands");
 const singleproduct = require("./routes/singleproduct");
 const customer = require("./routes/customer")
-const orders = require('./routes/order'); // Import the orders route
+const orders = require('./routes/order'); 
 const emailRoutes = require("./routes/email"); 
 const types = require("./routes/type");
+
 
 
 // const login = require("./routes/login")
@@ -31,13 +32,6 @@ mongoose
   .catch((err) => console.error(err));
 
 
-
-// const customerConnection = mongoose.createConnection(
-//   "mongodb+srv://admin:1234@cluster0.cftvtvp.mongodb.net/Customer?retryWrites=true&w=majority",
-//   { useNewUrlParser: true, useUnifiedTopology: true }
-// );
-
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -47,7 +41,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://frontendexesportapp.vercel.app",
+  })
+);
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -77,13 +76,11 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
