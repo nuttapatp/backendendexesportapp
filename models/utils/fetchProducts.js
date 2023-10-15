@@ -1,8 +1,8 @@
-const Product = require("../Product"); // Assuming you have a Product model
+const Product = require("../Product");
 
 async function fetchProductsOnly() {
   try {
-    return await Product.find(); // This just fetches the 'products' field
+    return await Product.find(); 
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error;

@@ -10,10 +10,8 @@ const products = require('./routes/products')
 const brands = require("./routes/brands");
 const singleproduct = require("./routes/singleproduct");
 const customer = require("./routes/customer")
-const orders = require('./routes/order'); 
 const emailRoutes = require("./routes/email"); 
 const types = require("./routes/type");
-const cartRoute = require("./routes/saveCart");
 
 
 const mongoURI =
@@ -43,7 +41,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -54,7 +51,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use(cartRoute);
 
 
 app.use('/', indexRouter);
@@ -64,14 +60,8 @@ app.use("/brands", brands);
 app.use("/singleproduct", singleproduct);
 app.use("/brands/:brandName", products);
 app.use("/customer/", customer);
-app.use('/orders', orders); 
 app.use("/email", emailRoutes);
 app.use("/type", types);
-// app.use("/save-cart", saveCartRoutes);
-
-
-
-
 
 
 

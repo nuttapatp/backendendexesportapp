@@ -5,7 +5,7 @@ const emailSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true, // To ensure each email is saved only once
+    unique: true, 
   },
 });
 
